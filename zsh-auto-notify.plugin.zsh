@@ -5,7 +5,8 @@ export AUTO_NOTIFY_VERSION="0.11.0"
     export AUTO_NOTIFY_EXPIRE_TIME=8000
 # Threshold in seconds for when to automatically show a notification
 [[ -z "$AUTO_NOTIFY_THRESHOLD" ]] &&
-    export AUTO_NOTIFY_THRESHOLD=10
+    # export AUTO_NOTIFY_THRESHOLD=10
+    export AUTO_NOTIFY_THRESHOLD=5
 # Enable or disable notifications for SSH sessions (0 = disabled, 1 = enabled)
 [[ -z "$AUTO_NOTIFY_ENABLE_SSH" ]] &&
     export AUTO_NOTIFY_ENABLE_SSH=0
@@ -20,19 +21,20 @@ export AUTO_NOTIFY_VERSION="0.11.0"
 # List of commands/programs to ignore sending notifications for
 [[ -z "$AUTO_NOTIFY_IGNORE" ]] &&
     export AUTO_NOTIFY_IGNORE=(
-        'vim'
-        'nvim'
-        'less'
-        'more'
-        'man'
-        'tig'
-        'watch'
-        'git commit'
-        'top'
-        'htop'
-        'ssh'
-        'nano'
-        'zellij'
+      'cd'
+      'vim'
+      'nvim'
+      'less'
+      'more'
+      'man'
+      'tig'
+      'watch'
+      'git commit'
+      'top'
+      'htop'
+      'ssh'
+      'nano'
+      'zellij'
     )
 
 function _auto_notify_format() {
@@ -99,15 +101,16 @@ function _auto_notify_message() {
             ssh "${USER}@${client_ip}" "$(printf '%q ' notify-send "${arguments[@]}")"
         else
             # If not running over SSH, send notification locally
-            notify-send "${arguments[@]}"
+            # notify-send "${arguments[@]}"
+            pushover-cli oo kk
         fi
 
-    elif [[ "$platform" == "Darwin" ]]; then
-        osascript \
-          -e 'on run argv' \
-          -e 'display notification (item 1 of argv) with title (item 2 of argv)' \
-          -e 'end run' \
-          "$body" "$title"
+    # elif [[ "$platform" == "Darwin" ]]; then
+    #     osascript \
+    #       -e 'on run argv' \
+    #       -e 'display notification (item 1 of argv) with title (item 2 of argv)' \
+    #       -e 'end run' \
+    #       "$body" "$title"
     else
         printf "Unknown platform for sending notifications: $platform\n"
         printf "Please post an issue on gitub.com/MichaelAquilina/zsh-auto-notify/issues/\n"
@@ -182,7 +185,9 @@ function _auto_notify_send() {
 function _auto_notify_track() {
     # $1 is the string the user typed, but only when history is enabled
     # $2 is a single-line, size-limited version of the command that is always available
-    # To still do something useful when history is disabled, although with reduced functionality, fall back to $2 when $1 is empty
+    # To still do something useful when history is disabled,
+    #   although with reduced functionality, fall back to $2 when $1 is empty
+
     AUTO_COMMAND="${1:-$2}"
     AUTO_COMMAND_FULL="$3"
     AUTO_COMMAND_START="$(date +"%s")"
@@ -211,10 +216,10 @@ function enable_auto_notify() {
 _auto_notify_reset_tracking
 
 
-platform="$(uname)"
-if [[ "$platform" == "Linux" ]] && ! type notify-send > /dev/null; then
-    printf "'notify-send' must be installed for zsh-auto-notify to work\n"
-    printf "Please install it with your relevant package manager\n"
-else
+# platform="$(uname)"
+# if [[ "$platform" == "Linux" ]] && ! type notify-send > /dev/null; then
+#     printf "'notify-send' must be installed for zsh-auto-notify to work\n"
+#     printf "Please install it with your relevant package manager\n"
+# else
     enable_auto_notify
-fi
+# fi
