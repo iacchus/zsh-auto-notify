@@ -32,6 +32,7 @@ export AUTO_NOTIFY_VERSION="0.11.0"
         'htop'
         'ssh'
         'nano'
+        'zellij'
     )
 
 function _auto_notify_format() {
