@@ -50,27 +50,19 @@ ZPlug_
 
 ::
 
-    zplug "MichaelAquilina/zsh-auto-notify"
+    zplug "iacchus/zsh-auto-notify"
 
 Antigen_
 
 ::
 
-    antigen bundle "MichaelAquilina/zsh-auto-notify"
+    antigen bundle "iacchus/zsh-auto-notify"
 
 Zgen_
 
 ::
 
-    zgen load "MichaelAquilina/zsh-auto-notify"
-
-Fig_
-
-Install ``zsh-auto-notify`` with Fig in just one click.
-
-.. image:: https://fig.io/badges/install-with-fig.svg
-  :target: https://fig.io/plugins/other/zsh-auto-notify_MichaelAquilina
-  :alt: Install with Fig
+    zgen load "iacchus/zsh-auto-notify"
 
 oh-my-zsh_
 
@@ -78,7 +70,7 @@ Copy this repository to ``$ZSH_CUSTOM/custom/plugins``, where ``$ZSH_CUSTOM``
 is the directory with custom plugins of oh-my-zsh `(read more) <https://github.com/robbyrussell/oh-my-zsh/wiki/Customization/>`_:
 ::
 
-    git clone https://github.com/MichaelAquilina/zsh-auto-notify.git $ZSH_CUSTOM/plugins/auto-notify
+    git clone https://github.com/iacchus/zsh-auto-notify.git $ZSH_CUSTOM/plugins/zsh-auto-notify
 
 
 Then add this line to your ``.zshrc``. Make sure it is **before** the line ``source $ZSH/oh-my-zsh.sh``.
@@ -231,7 +223,7 @@ be missing many others.
 Because of this if there is a specific use case that does not work as
 you would expect or if you have any suggestions to how the plugin should
 behave, feel free to `open an
-issue <https://github.com/MichaelAquilina/zsh-auto-notify/issues/new>`__
+issue <https://github.com/iacchus/zsh-auto-notify/issues/new>`__
 
 Running Tests
 -------------
@@ -267,8 +259,5 @@ NOTE: It is required that you use a minimum zunit version of 0.8.2
 .. |GPLv3| image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
 
-.. |CircleCI| image:: https://circleci.com/gh/MichaelAquilina/zsh-auto-notify.svg?style=svg
-   :target: https://circleci.com/gh/MichaelAquilina/zsh-auto-notify
-
-.. |Version| image:: https://badge.fury.io/gh/MichaelAquilina%2Fzsh-auto-notify.svg
-   :target: https://badge.fury.io/gh/MichaelAquilina%2Fzsh-auto-notify
+.. |Version| image:: https://badge.fury.io/gh/iacchus%2Fzsh-auto-notify.svg
+   :target: https://badge.fury.io/gh/iacchus%2Fzsh-auto-notify
