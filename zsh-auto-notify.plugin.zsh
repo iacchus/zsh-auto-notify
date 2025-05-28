@@ -1,5 +1,7 @@
 export AUTO_NOTIFY_VERSION="0.11.0"
 
+# https://man.archlinux.org/man/notify-send.1.en
+
 # Time it takes for a notification to expire
 [[ -z "$AUTO_NOTIFY_EXPIRE_TIME" ]] &&
     export AUTO_NOTIFY_EXPIRE_TIME=8000
@@ -10,9 +12,9 @@ export AUTO_NOTIFY_VERSION="0.11.0"
 # Enable or disable notifications for SSH sessions (0 = disabled, 1 = enabled)
 [[ -z "$AUTO_NOTIFY_ENABLE_SSH" ]] &&
     export AUTO_NOTIFY_ENABLE_SSH=0
-# Enable transient notifications to prevent them from being saved in the notification history
-[[ -z "$AUTO_NOTIFY_ENABLE_TRANSIENT" ]] &&
-    export AUTO_NOTIFY_ENABLE_TRANSIENT=1
+    # # Enable transient notifications to prevent them from being saved in the notification history
+    # [[ -z "$AUTO_NOTIFY_ENABLE_TRANSIENT" ]] &&
+    #     export AUTO_NOTIFY_ENABLE_TRANSIENT=1
 # Configure whether notifications should be canceled when receiving a SIGINT (Ctrl+C)
 [[ -z "$AUTO_NOTIFY_CANCEL_ON_SIGINT" ]] &&
     export AUTO_NOTIFY_CANCEL_ON_SIGINT=0
@@ -37,6 +39,7 @@ export AUTO_NOTIFY_VERSION="0.11.0"
       'zellij'
     )
 
+# Parses the % variables
 function _auto_notify_format() {
     local MESSAGE="$1"
     local command="$2"
@@ -66,7 +69,7 @@ function _auto_notify_message() {
     if [[ "$platform" == "Linux" ]]; then
         # Set default notification properties
         local urgency="normal"
-        local transient="--hint=int:transient:$AUTO_NOTIFY_ENABLE_TRANSIENT"
+        # local transient="--hint=int:transient:$AUTO_NOTIFY_ENABLE_TRANSIENT"
         local icon="${AUTO_NOTIFY_ICON_SUCCESS:-""}"
 
         # Handle specific exit codes
@@ -76,16 +79,17 @@ function _auto_notify_message() {
             if [[ "${AUTO_NOTIFY_CANCEL_ON_SIGINT}" -eq 1 ]]; then
                 return
             fi
-            urgency="critical"
-            transient="--hint=int:transient:1"
+            # urgency="critical"
+            # transient="--hint=int:transient:1"
             icon="${AUTO_NOTIFY_ICON_FAILURE:-""}"
         elif [[ "$exit_code" -ne 0 ]]; then
             # For all other non-zero exit codes, mark the notification as critical.
-            urgency="critical"
+            # urgency="critical"
             icon="${AUTO_NOTIFY_ICON_FAILURE:-""}"
         fi
 
-        local arguments=("$title" "$body" "--app-name=zsh" "$transient" "--urgency=$urgency" "--expire-time=$AUTO_NOTIFY_EXPIRE_TIME")
+        # local arguments=("$title" "$body" "--app-name=zsh" "$transient" "--urgency=$urgency" "--expire-time=$AUTO_NOTIFY_EXPIRE_TIME")
+        local arguments=("$title" "$body" 
 
         if [[ -n "$icon" ]]; then
                 arguments+=("--icon=$icon")
