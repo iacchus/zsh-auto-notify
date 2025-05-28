@@ -9,9 +9,9 @@ export AUTO_NOTIFY_VERSION="0.11.0"
 [[ -z "$AUTO_NOTIFY_THRESHOLD" ]] &&
     # export AUTO_NOTIFY_THRESHOLD=10
     export AUTO_NOTIFY_THRESHOLD=5
-# Enable or disable notifications for SSH sessions (0 = disabled, 1 = enabled)
-[[ -z "$AUTO_NOTIFY_ENABLE_SSH" ]] &&
-    export AUTO_NOTIFY_ENABLE_SSH=0
+    # # Enable or disable notifications for SSH sessions (0 = disabled, 1 = enabled)
+    # [[ -z "$AUTO_NOTIFY_ENABLE_SSH" ]] &&
+    #     export AUTO_NOTIFY_ENABLE_SSH=0
     # # Enable transient notifications to prevent them from being saved in the notification history
     # [[ -z "$AUTO_NOTIFY_ENABLE_TRANSIENT" ]] &&
     #     export AUTO_NOTIFY_ENABLE_TRANSIENT=1
@@ -68,7 +68,7 @@ function _auto_notify_message() {
 
     if [[ "$platform" == "Linux" ]]; then
         # Set default notification properties
-        local urgency="normal"
+        # local urgency="normal"
         # local transient="--hint=int:transient:$AUTO_NOTIFY_ENABLE_TRANSIENT"
         local icon="${AUTO_NOTIFY_ICON_SUCCESS:-""}"
 
@@ -131,11 +131,11 @@ function _is_auto_notify_ignored() {
     # Remove leading whitespace
     target_command="$(echo "$target_command" | sed -e 's/^ *//')"
 
-    # Ignore the command if running over SSH and AUTO_NOTIFY_ENABLE_SSH is disabled
-    if [[ -n ${SSH_CLIENT-} || -n ${SSH_TTY-} || -n ${SSH_CONNECTION-} ]] && [[ "${AUTO_NOTIFY_ENABLE_SSH-1}" == "0" ]]; then
-        print "yes"
-        return
-    fi
+    # # Ignore the command if running over SSH and AUTO_NOTIFY_ENABLE_SSH is disabled
+    # if [[ -n ${SSH_CLIENT-} || -n ${SSH_TTY-} || -n ${SSH_CONNECTION-} ]] && [[ "${AUTO_NOTIFY_ENABLE_SSH-1}" == "0" ]]; then
+    #     print "yes"
+    #     return
+    # fi
 
     # Remove sudo prefix from command if detected
     if [[ "$target_command" == "sudo "* ]]; then
