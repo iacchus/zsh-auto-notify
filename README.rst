@@ -1,7 +1,7 @@
 ZSH Auto-Notify
 ===============
 
-|CircleCI| |Version| |GPLv3|
+|Version| |GPLv3|
 
 Simple zsh plugin that automatically sends out a notification when a long running task
 has completed.
@@ -38,7 +38,6 @@ However they would not have been tested as part of the CI test process.
 Supported desktop environments:
 
 * Linux X/Wayland (Requires ``notify-send`` to be installed)
-* MacOSX
 
 Installation
 ------------
@@ -77,7 +76,7 @@ Then add this line to your ``.zshrc``. Make sure it is **before** the line ``sou
 
 ::
 
-    plugins=(auto-notify $plugins)
+    plugins=(zsh-auto-notify $plugins)
 
 
 Configuration
