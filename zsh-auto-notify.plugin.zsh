@@ -89,25 +89,27 @@ function _auto_notify_message() {
         fi
 
         # local arguments=("$title" "$body" "--app-name=zsh" "$transient" "--urgency=$urgency" "--expire-time=$AUTO_NOTIFY_EXPIRE_TIME")
-        local arguments=("$title" "$body" 
+        # local arguments=("$title" "$body")
+        local arguments=("$body" "$title") 
 
         if [[ -n "$icon" ]]; then
                 arguments+=("--icon=$icon")
         fi
 
         # Check if the script is running over SSH
-        if [[ -n "${SSH_CLIENT}" || -n "${SSH_CONNECTION}" ]]; then
-            # Extract the client IP address from environment
-            local client_ip="${SSH_CLIENT%% *}"
-            [[ -z "$client_ip" ]] && client_ip="${SSH_CONNECTION%% *}"
-
-            # Forward the notify-send command to the client machine via SSH
-            ssh "${USER}@${client_ip}" "$(printf '%q ' notify-send "${arguments[@]}")"
-        else
+        # if [[ -n "${SSH_CLIENT}" || -n "${SSH_CONNECTION}" ]]; then
+        #     # Extract the client IP address from environment
+        #     local client_ip="${SSH_CLIENT%% *}"
+        #     [[ -z "$client_ip" ]] && client_ip="${SSH_CONNECTION%% *}"
+        #
+        #     # Forward the notify-send command to the client machine via SSH
+        #     ssh "${USER}@${client_ip}" "$(printf '%q ' notify-send "${arguments[@]}")"
+        # else
             # If not running over SSH, send notification locally
             # notify-send "${arguments[@]}"
-            pushover-cli oo kk
-        fi
+            # pushover-cli oo kk
+        pushover-cli "${arguments[@]}"
+        # fi
 
     # elif [[ "$platform" == "Darwin" ]]; then
     #     osascript \
