@@ -92,9 +92,9 @@ function _auto_notify_message() {
         # local arguments=("$title" "$body")
         local arguments=("$body" "$title") 
 
-        if [[ -n "$icon" ]]; then
-                arguments+=("--icon=$icon")
-        fi
+        # if [[ -n "$icon" ]]; then
+        #         arguments+=("--icon=$icon")
+        # fi
 
         # Check if the script is running over SSH
         # if [[ -n "${SSH_CLIENT}" || -n "${SSH_CONNECTION}" ]]; then
