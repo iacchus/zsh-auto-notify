@@ -26,6 +26,7 @@ export AUTO_NOTIFY_VERSION="0.11.0"
       'cd'
       'vim'
       'nvim'
+      'nano'
       'less'
       'more'
       'man'
@@ -35,7 +36,7 @@ export AUTO_NOTIFY_VERSION="0.11.0"
       'top'
       'htop'
       'ssh'
-      'nano'
+      'mosh'
       'zellij'
     )
 
