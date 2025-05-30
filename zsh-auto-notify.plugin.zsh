@@ -38,6 +38,8 @@ export AUTO_NOTIFY_VERSION="0.11.0"
       'ssh'
       'mosh'
       'zellij'
+      'py'
+      'python'
     )
 
 # Parses the % variables
