@@ -40,6 +40,8 @@ export AUTO_NOTIFY_VERSION="0.11.0"
       'zellij'
       'py'
       'python'
+      'ptpython'
+      'ranger'
     )
 
 # Parses the % variables
@@ -93,7 +95,7 @@ function _auto_notify_message() {
 
         # local arguments=("$title" "$body" "--app-name=zsh" "$transient" "--urgency=$urgency" "--expire-time=$AUTO_NOTIFY_EXPIRE_TIME")
         # local arguments=("$title" "$body")
-        local arguments=("$body" "$title") 
+        local arguments=("--message" "$body" "--title" "$title" "--icon" "https://public.kassius.org/icons/termux.png") 
 
         # if [[ -n "$icon" ]]; then
         #         arguments+=("--icon=$icon")
@@ -111,7 +113,8 @@ function _auto_notify_message() {
             # If not running over SSH, send notification locally
             # notify-send "${arguments[@]}"
             # pushover-cli oo kk
-        pushover-cli "${arguments[@]}"
+        # pushover-cli "${arguments[@]}"
+        ntfy-cli.py "${arguments[@]}"
         # fi
 
     # elif [[ "$platform" == "Darwin" ]]; then
