@@ -62,7 +62,7 @@ function _auto_notify_message() {
     local exit_code="$3"
     local platform="$(uname)"
     # Run using echo -e in order to make sure notify-send picks up new line
-    local DEFAULT_TITLE="\"%command\" Completed"
+    local DEFAULT_TITLE="\"%command\" completed"
     local DEFAULT_BODY="$(echo -e "Total time: %elapsed seconds\nExit code: %exit_code")"
 
     local title="${AUTO_NOTIFY_TITLE:-$DEFAULT_TITLE}"
@@ -114,7 +114,8 @@ function _auto_notify_message() {
             # notify-send "${arguments[@]}"
             # pushover-cli oo kk
         # pushover-cli "${arguments[@]}"
-        ntfy-cli.py "${arguments[@]}"
+        # ntfy-cli.py "${arguments[@]}"
+        ntfy-client pub "${arguments[@]}"
         # fi
 
     # elif [[ "$platform" == "Darwin" ]]; then
