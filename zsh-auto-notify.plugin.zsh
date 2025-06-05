@@ -62,8 +62,8 @@ function _auto_notify_message() {
     local exit_code="$3"
     local platform="$(uname)"
     # Run using echo -e in order to make sure notify-send picks up new line
-    local DEFAULT_TITLE="\"%command\" completed"
-    local DEFAULT_BODY="$(echo -e "Total time: %elapsed seconds\nExit code: %exit_code")"
+    local DEFAULT_TITLE="command ended ($(date))"
+    local DEFAULT_BODY="$(echo -e "%command\nin %elapsed seconds\nexit code: %exit_code")"
 
     local title="${AUTO_NOTIFY_TITLE:-$DEFAULT_TITLE}"
     local text="${AUTO_NOTIFY_BODY:-$DEFAULT_BODY}"
