@@ -8,7 +8,7 @@ export AUTO_NOTIFY_VERSION="0.11.0"
 # Threshold in seconds for when to automatically show a notification
 [[ -z "$AUTO_NOTIFY_THRESHOLD" ]] &&
     # export AUTO_NOTIFY_THRESHOLD=10
-    export AUTO_NOTIFY_THRESHOLD=5
+    export AUTO_NOTIFY_THRESHOLD=120
     # # Enable or disable notifications for SSH sessions (0 = disabled, 1 = enabled)
     # [[ -z "$AUTO_NOTIFY_ENABLE_SSH" ]] &&
     #     export AUTO_NOTIFY_ENABLE_SSH=0
