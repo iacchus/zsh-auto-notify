@@ -42,6 +42,7 @@ export AUTO_NOTIFY_VERSION="0.11.0"
       'python'
       'ptpython'
       'ranger'
+      'termux-x11'
     )
 
 # Parses the % variables
